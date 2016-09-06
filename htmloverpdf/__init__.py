@@ -43,7 +43,7 @@ def render(html):
             if pdf_pages and pageno < pdf_pages.get_n_pages():
                 pdf_pages.get_page(pageno).render_for_printing(ctx)
             if pageno < len(html_pages):
-                html_pages[pageno].paint(cffictx)
+                html_pages[pageno].paint(cffictx, scale=72 / 96.0)
             ctx.show_page()
     surface.finish()
     return output.getbuffer()

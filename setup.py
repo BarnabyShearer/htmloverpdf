@@ -7,7 +7,7 @@ with open(path.join(path.abspath(path.dirname(__file__)), 'README.rst'), encodin
 
 setup(
     name="htmloverpdf",
-    version="0.0.1b1",
+    version="0.0.1b2",
     description="Render a HTML overlay over existing PDF files",
     long_description=long_description,
     author="Wirehive Ltd",
