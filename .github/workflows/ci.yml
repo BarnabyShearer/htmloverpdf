@@ -17,6 +17,6 @@ jobs:
     - uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-    - run: sudo apt install -y libgirepository1.0-dev
+    - run: sudo apt install -y libgirepository1.0-dev gir1.2-poppler-0.18 gir1.2-pango-1.0
     - run: pip install tox tox-gh-actions
     - run: tox
