@@ -1,9 +1,12 @@
+"""Entrypoint."""
+
 import sys
 
 from . import render
 
 
-def maini() -> None:
+def main() -> None:
+    """Entrypoint."""
     sys.stdout.buffer.write(render(sys.stdin.read()))
 
 

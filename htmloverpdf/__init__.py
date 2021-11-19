@@ -1,20 +1,20 @@
-"""htmloverpdf"""
+"""Render a HTML overlay over existing PDF files."""
 
 import io
 from copy import deepcopy
 
-import gi
+import cairo
+import cairocffi  # type: ignore
+import gi  # type: ignore
+import weasyprint  # type: ignore
+from lxml import html
 
 gi.require_version("Poppler", "0.18")
-import cairo
-import cairocffi
-import weasyprint
-from gi.repository import Gio, GLib, Poppler
-from lxml import etree
+from gi.repository import Gio, GLib, Poppler  # type: ignore  # noqa: E402
 
 
-def render(html: str) -> bytes:
-    """Convert HTML to a PDF"""
+def render(src: str) -> memoryview:
+    """Convert HTML to a PDF."""
 
     output = io.BytesIO()
     surface = cairo.PDFSurface(output, 595, 842)
@@ -23,22 +23,21 @@ def render(html: str) -> bytes:
         cairocffi.ffi.cast("cairo_t **", id(ctx) + object.__basicsize__)[0], incref=True
     )
 
-    html = etree.parse(io.StringIO(html), etree.HTMLParser())
+    doc = html.parse(io.StringIO(src), html.HTMLParser())
 
-    for pdf in html.xpath("//img[substring(@src, string-length(@src) - 3)='.pdf']"):
+    for pdf in doc.xpath("//img[substring(@src, string-length(@src) - 3)='.pdf']"):
         for prev in pdf.xpath("preceding-sibling::*"):
             pdf.getparent().remove(prev)
         pdfsrc = pdf.get("src")
         pdf.getparent().remove(pdf)
-        section = deepcopy(html)
+        section = deepcopy(doc)
         for nextpdf in section.xpath(
             "//img[substring(@src, string-length(@src) - 3)='.pdf']"
         ):
             for nextel in nextpdf.xpath("following-sibling::*"):
                 nextpdf.getparent().remove(nextel)
-            nextpdf.getparent().remove(nextpdf)
 
-        html_pages = weasyprint.HTML(tree=section).render().pages
+        html_pages = weasyprint.HTML(string=html.tostring(section)).render().pages
         surface.set_size(
             html_pages[0].width * 72 / 96.0, html_pages[0].height * 72 / 96.0
         )
@@ -60,7 +59,7 @@ def render(html: str) -> bytes:
         ):
             if pdf_pages and pageno < pdf_pages.get_n_pages():
                 pdf_pages.get_page(pageno).render_for_printing(ctx)
-            if pageno < len(html_pages):
+            if pageno < len(html_pages):  # pragma: no branch
                 html_pages[pageno].paint(cffictx, scale=72 / 96.0)
             ctx.show_page()
     surface.finish()
