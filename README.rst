@@ -14,8 +14,8 @@ Install
 
 ::
 
-    sudo apt install python3-gi-cairo gir1.2-poppler-0.18 python3-cairocffi python3-lxml gir1.2-pango-1.0
-    pip install htmloverpdf
+    sudo apt install libgirepository1.0-dev gir1.2-poppler-0.18 gir1.2-pango-1.0
+    python3 -m pip install htmloverpdf
 
 A wrapper for http://weasyprint.org/ which allows compositing with existing PDF files.
             
