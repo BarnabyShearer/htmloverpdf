@@ -4,7 +4,9 @@ RUN apk add --no-cache \
         build-base \
         gobject-introspection-dev \
         jpeg-dev \
-        zlib-dev
+        zlib-dev \
+        libxml2-dev \
+        libxslt-dev
 RUN SETUPTOOLS_SCM_PRETEND_VERSION=0.0.0 python3 -m pip \
         --disable-pip-version-check \
         --no-python-version-warning \
@@ -13,7 +15,8 @@ RUN SETUPTOOLS_SCM_PRETEND_VERSION=0.0.0 python3 -m pip \
             cairocffi \
             pycairo \
             pygobject \
-            Pillow
+            Pillow \
+            lxml
 
 FROM python:3-alpine
 RUN apk add --no-cache \
