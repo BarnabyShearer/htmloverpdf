@@ -37,7 +37,11 @@ jobs:
             ghcr.io/${{ github.repository }}
           flavor: |
             latest=${{ matrix.flavor == 'python' }}
-            prefix=${{ matrix.flavor }}
+            suffix=-${{ matrix.flavor }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
       - uses: docker/setup-qemu-action@v1.2.0
         with:
           platforms: linux/arm64
