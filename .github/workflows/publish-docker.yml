@@ -36,7 +36,7 @@ jobs:
             ${{ github.repository }}
             ghcr.io/${{ github.repository }}
           flavor: |
-            latest=${{ matrix.flavor == "python" }}
+            latest=${{ matrix.flavor == 'python' }}
             prefix=${{ matrix.flavor }}
       - uses: docker/bake-action@v3.6.0
         with:
