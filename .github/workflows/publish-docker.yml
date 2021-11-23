@@ -38,6 +38,7 @@ jobs:
           flavor: |
             latest=${{ matrix.flavor == 'python' }}
             prefix=${{ matrix.flavor }}
+      - uses: docker/setup-buildx-action@v1.6.0
       - uses: docker/bake-action@v1.6.0
         with:
           push: true
