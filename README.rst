@@ -2,10 +2,10 @@
 htmloverpdf
 ===========
 .. image:: https://readthedocs.org/projects/htmloverpdf/badge/?version=latest
-    :target: https://htmloverpdf.readthedocs.io/en/latest/?badge=latest
+    :target: https://htmloverpdf.readthedocs.io/en/latest/
 
-.. image:: https://badge.fury.io/py/htmloverpdf.svg
-    :target: https://badge.fury.io/py/htmloverpdf
+.. image:: https://img.shields.io/pypi/v/htmloverpdf?color=success
+    :target: https://pypi.org/project/htmloverpdf/
 
 .. image:: https://img.shields.io/docker/v/barnabyshearer/htmloverpdf/latest?color=success&label=docker
     :target: https://hub.docker.com/repository/docker/barnabyshearer/htmloverpdf
