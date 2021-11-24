@@ -7,6 +7,9 @@ htmloverpdf
 .. image:: https://badge.fury.io/py/htmloverpdf.svg
     :target: https://badge.fury.io/py/htmloverpdf
 
+.. image:: https://img.shields.io/docker/v/barnabyshearer/htmloverpdf/latest?color=success&label=docker
+    :target: https://img.shields.io/docker/v/barnabyshearer/htmloverpdf/latest
+
 Render a HTML overlay over existing PDF files.
 
 Install
