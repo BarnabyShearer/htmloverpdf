@@ -69,7 +69,7 @@ RUN SETUPTOOLS_SCM_PRETEND_VERSION=0.0.0 python3 -m pip \
             Pillow \
             lxml
 
-FROM python:3.10-alpine as python-alpine
+FROM python:3.10-alpine AS python-alpine
 RUN apk add --no-cache \
         font-croscore \
         gobject-introspection \
