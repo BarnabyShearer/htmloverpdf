@@ -1,4 +1,4 @@
-target "docker-metadata-action" {
+arget "docker-metadata-action" {
   context = "./"
   platforms = [
     "linux/amd64",
@@ -7,30 +7,32 @@ target "docker-metadata-action" {
 }
 
 group "default" {
-  targets = ["python", "python-slim", "python-alpine", "alpine", "debian"]
+  targets = ["python", "alpine", "debian", "python-alpine", "python-slim"]
 }
 
 target "python" {
   inherits = ["docker-metadata-action"]
-  dockerfile = "Dockerfile"
-}
-
-target "python-slim" {
-  inherits = ["docker-metadata-action"]
-  dockerfile = "Dockerfile.python-slim"
-}
-
-target "python-alpine" {
-  inherits = ["docker-metadata-action"]
-  dockerfile = "Dockerfile.python-alpine"
+  target = "python"
 }
 
 target "alpine" {
   inherits = ["docker-metadata-action"]
-  dockerfile = "Dockerfile.alpine"
+  target = "alpine"
 }
 
 target "debian" {
   inherits = ["docker-metadata-action"]
-  dockerfile = "Dockerfile.debian"
+  target = "debian"
 }
+
+target "python-alpine" {
+  inherits = ["docker-metadata-action"]
+  target = "python-alpine"
+}
+
+target "python-slim" {
+  inherits = ["docker-metadata-action"]
+  target = "python-slim"
+}
+
+"""
